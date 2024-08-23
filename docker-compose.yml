@@ -1,0 +1,18 @@
+services:
+  backend:
+    build: ./proto-transaction-nest
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_HOST=host.docker.internal
+      - DATABASE_PORT=5432
+      - DATABASE_USER=gekata
+      - DATABASE_PASSWORD=123
+      - DATABASE_NAME=transaction
+
+  frontend:
+    build: ./proto-transactions-react
+    ports:
+      - "3001:80"
+    depends_on:
+      - backend
